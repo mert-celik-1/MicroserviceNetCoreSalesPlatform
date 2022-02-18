@@ -52,7 +52,7 @@ namespace IdentityServer.Controllers
             var userIdClaim = User.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Sub);
 
             if (userIdClaim == null) return BadRequest();
-
+               
             var user = await _userManager.FindByIdAsync(userIdClaim.Value);
 
             if (user == null) return BadRequest();

@@ -24,11 +24,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IdentityServer", "IdentityS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Photo", "Photo", "{819E8A71-CFB0-41FE-B3DF-F3D96D314A1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photo.Api", "Services\Photo\Photo.Api\Photo.Api.csproj", "{703B0EEB-FFA9-41C4-BD6E-72A22274FD1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Photo.Api", "Services\Photo\Photo.Api\Photo.Api.csproj", "{703B0EEB-FFA9-41C4-BD6E-72A22274FD1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{ACDCA8C2-C144-464E-9B49-2CA630FDD056}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Basket.Api", "Services\Basket\Basket.Api\Basket.Api.csproj", "{BD4537AC-6046-488D-A29B-5AF138E41758}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.Api", "Services\Basket\Basket.Api\Basket.Api.csproj", "{BD4537AC-6046-488D-A29B-5AF138E41758}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
