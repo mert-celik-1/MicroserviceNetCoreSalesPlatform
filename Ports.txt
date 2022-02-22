@@ -1,5 +1,6 @@
 Catalog.API ---> 5011
 Photo.API ---> 5012
-Basket ---> 5013
+Basket.API ---> 5013
+Discount.API ---> 5014
 
 Identity --->5001
