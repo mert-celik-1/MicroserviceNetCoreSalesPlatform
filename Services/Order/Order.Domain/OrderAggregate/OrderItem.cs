@@ -9,11 +9,15 @@ namespace Order.Domain.OrderAggregate
 {
     public class OrderItem : Entity
     {
-        public string ProductId { get; private set; }
-        public string ProductName { get; private set; }
-        public string PictureUrl { get; private set; }
-        public Decimal Price { get; private set; }
+        public string ProductId { get; set; }
+        public string ProductName { get; set; }
+        public string PictureUrl { get; set; }
+        public Decimal Price { get; set; }
 
+        public OrderItem()
+        {
+
+        }
         public OrderItem(string productId, string productName, string pictureUrl, decimal price)
         {
             ProductId = productId;
