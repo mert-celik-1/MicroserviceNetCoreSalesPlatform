@@ -3,5 +3,9 @@ Photo.API ---> 5012
 Basket.API ---> 5013
 Discount.API ---> 5014
 Order.API ---> 5015
+FakePayment.API ---> 5016
+
+
 
 Identity --->5001
+Gateway ---> 5000
