@@ -1,13 +1,18 @@
+using Client.Web.Extensions;
 using Client.Web.Handler;
+using Client.Web.Helpers;
 using Client.Web.Models;
 using Client.Web.Services;
 using Client.Web.Services.Interfaces;
+using Client.Web.Validators;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SharedLibrary.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,16 +36,14 @@ namespace Client.Web
             services.Configure<ClientSettings>(Configuration.GetSection("ClientSettings"));
             services.Configure<ServiceApiSettings>(Configuration.GetSection("ServiceApiSettings"));
             services.AddHttpContextAccessor();
+            services.AddAccessTokenManagement();
+            services.AddSingleton<PhotoHelper>();
+            services.AddScoped<ISharedIdentityService, SharedIdentityService>();
 
-            var serviceApiSettings = Configuration.GetSection("ServiceApiSettings").Get<ServiceApiSettings>();
             services.AddScoped<ResourceOwnerPasswordTokenHandler>();
+            services.AddScoped<ClientCredentialTokenHandler>();
 
-            services.AddHttpClient<IIdentityService, IdentityService>();
-
-            services.AddHttpClient<IUserService, UserService>(opt =>
-            {
-                opt.BaseAddress = new Uri(serviceApiSettings.IdentityBaseUri);
-            }).AddHttpMessageHandler<ResourceOwnerPasswordTokenHandler>();
+            services.AddHttpClientServices(Configuration);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, opts =>
             {
@@ -52,7 +55,7 @@ namespace Client.Web
 
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CourseCreateInputValidator>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

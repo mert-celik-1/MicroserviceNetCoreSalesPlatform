@@ -1,5 +1,6 @@
 ﻿using Basket.Api.Dtos;
 using Basket.Api.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SharedLibrary.ControllerBases;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Basket.Api.Controllers
 {
+   
     [Route("api/[controller]")]
     [ApiController]
     public class BasketsController : CustomBaseController
@@ -33,6 +35,8 @@ namespace Basket.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveOrUpdateBasket(BasketDto basketDto)
         {
+            basketDto.UserId = _sharedIdentityService.GetUserId;
+
             var response = await _basketService.SaveOrUpdate(basketDto);
 
             return CreateActionResultInstance(response);
